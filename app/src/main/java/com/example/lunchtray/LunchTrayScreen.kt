@@ -8,7 +8,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.lunchtray.ui.OrderViewModel
+import com.example.lunchtray.ui.navigation.Navigation
 
 // TODO: Screen enum
 
@@ -16,9 +19,7 @@ import com.example.lunchtray.ui.OrderViewModel
 
 @Composable
 fun LunchTrayApp(modifier: Modifier = Modifier) {
-    // TODO: Create Controller and initialization
-
-    // Create ViewModel
+    val navController: NavHostController = rememberNavController()
     val viewModel: OrderViewModel = viewModel()
 
     Scaffold(
@@ -27,7 +28,11 @@ fun LunchTrayApp(modifier: Modifier = Modifier) {
         }
     ) { innerPadding ->
         val uiState by viewModel.uiState.collectAsState()
-        Text(text = "scaffold", modifier = Modifier.padding(innerPadding))
-        // TODO: Navigation host
+        Navigation(
+            uiState = uiState,
+            navController = navController,
+            orderViewModel = viewModel,
+            modifier = modifier.padding(innerPadding)
+        )
     }
 }
