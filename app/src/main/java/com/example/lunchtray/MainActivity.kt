@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LunchTrayTheme {
-                LunchTrayApp(modifier = Modifier.padding(10.dp))
+                LunchTrayApp(modifier = Modifier.padding(0.dp))
             }
         }
     }
